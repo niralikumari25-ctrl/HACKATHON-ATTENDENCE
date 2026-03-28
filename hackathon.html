@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Attendance Record</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:  rgb(16, 116, 156);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background:rgb(201, 186, 201);
+      width: 600px;
+      padding: 25px;
+      border: 1px solid black;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Attendance Record</h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <br>
+    <button onclick="markAttendance()">Mark Attendance</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="records"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function markAttendance() {
+      let name = document.getElementById("name").value;
+
+      if (name === "") {
+        alert("Please enter name");
+        return;
+      }
+
+      let now = new Date();
+      let date = now.toLocaleDateString();
+      let time = now.toLocaleTimeString();
+
+      let row = `
+        <tr>
+          <td>${name}</td>
+          <td>${date}</td>
+          <td>${time}</td>
+        </tr>
+      `;
+
+      document.getElementById("records").innerHTML += row;
+
+      document.getElementById("name").value = "";
+    }
+  </script>
+
+</body>
+</html>
